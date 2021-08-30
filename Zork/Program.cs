@@ -1,18 +1,7 @@
 ﻿using System;
 
 namespace Zork
-{
-    enum Commands
-    {
-        QUIT,
-        LOOK,
-        NORTH,
-        SOUTH,
-        EAST,
-        WEST,
-        UNKNOWN
-    }
-    
+{   
     class Program
     {
         static void Main(string[] args)
