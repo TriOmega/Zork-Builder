@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 
 namespace Zork
 {
     class Program
     {
-        private string Location
+        private static string CurrentRoom
         {
             get
             {
-                return Rooms[LocationRow,LocationColumn];
+                return Rooms[Location.Row,Location.Column];
             }
         }
 
@@ -20,7 +21,8 @@ namespace Zork
             Commands command = Commands.UNKNOWN;
             while (true)
             {
-                Console.Write($"{Rooms[LocationRow,LocationColumn]}\n> ");
+                Console.WriteLine(CurrentRoom);
+                Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
                 if (command == Commands.QUIT)
                 {
@@ -56,22 +58,20 @@ namespace Zork
 
         private static bool Move(Commands command)
         {
-            bool didMove;
+            bool didMove = true;
             switch (command)
             {
-                case Commands.NORTH when LocationColumn < Rooms.Length - 1:
-                    didMove = true;
+                case Commands.NORTH when Location.Row < Rooms.GetLength(0) - 1:
+                    Location.Row++;
                     break;
-                case Commands.SOUTH when LocationRow > 0:
-                    didMove = true;
+                case Commands.SOUTH when Location.Row > 0:
+                    Location.Row--;
                     break;
-                case Commands.EAST when LocationColumn < Rooms.Length - 1:
-                    LocationColumn++;
-                    didMove = true;
+                case Commands.EAST when Location.Column < Rooms.GetLength(1) - 1:
+                    Location.Column++;
                     break;
-                case Commands.WEST when LocationColumn > 0:
-                    LocationColumn--;
-                    didMove = true;
+                case Commands.WEST when Location.Column > 0:
+                    Location.Column--;
                     break;
                 default:
                     didMove = false;
@@ -82,13 +82,23 @@ namespace Zork
 
         private static Commands ToCommand(string commandString) => Enum.TryParse<Commands>(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
+        private static bool IsDirection(Commands command) => Directions.Contains(command);
+
         private static string[,] Rooms =
         { 
             {"Rocky Trail", "South of House", "Canyon View"},
             {"Forest","West of House","Behind House"},
             {"Dense Woods", "North of House", "Clearing"}
         };
-        private static int LocationColumn = 1;
-        private static int LocationRow = 1;
+
+        private static readonly List<Commands> Directions = new List<Commands>
+        {
+            Commands.NORTH,
+            Commands.SOUTH,
+            Commands.EAST,
+            Commands.WEST
+        };
+
+        private static (int Row, int Column) Location = (1,1);
     }
 }
