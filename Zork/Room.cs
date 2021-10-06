@@ -47,7 +47,7 @@ namespace Zork
         public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
                                                                  let room = world.RoomsByName.GetValueOrDefault(entry.Value)
                                                                  where room != null
-                                                                 select (Directions: entry.Key, Room: room))
-                                                                 .ToDictionary(pair => pair.Directions, pair => pair.Room);
+                                                                 select (Direction: entry.Key, Room: room))
+                                                                 .ToDictionary(pair => pair.Direction, pair => pair.Room);
     }
 }
