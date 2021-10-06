@@ -1,6 +1,6 @@
 ﻿{
 	"World": {
-		"StartingLocation": "West of House:",
+		"StartingLocation": "West of House",
 		"Rooms": [
 			{
 				"Name": "West of House",
