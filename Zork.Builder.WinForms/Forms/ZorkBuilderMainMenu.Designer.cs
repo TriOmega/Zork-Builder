@@ -161,6 +161,7 @@ namespace Zork.Builder.WinForms
             deleteButton.TabIndex = 5;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // addButton
             // 
@@ -171,6 +172,7 @@ namespace Zork.Builder.WinForms
             addButton.TabIndex = 4;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // roomsListBox
             // 
