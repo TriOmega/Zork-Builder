@@ -29,52 +29,110 @@ namespace Zork.Builder.WinForms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+            System.Windows.Forms.ToolStripSeparator dividerStripMenuItem1;
+            System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+            System.Windows.Forms.ToolStripSeparator dividerStripMenuItem2;
+            System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
             this.roomsTabControl = new System.Windows.Forms.TabControl();
             this.roomsTabPage = new System.Windows.Forms.TabPage();
-            this.itemsTabPage = new System.Windows.Forms.TabPage();
-            this.commandsTabPage = new System.Windows.Forms.TabPage();
-            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dividerStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dividerStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.globalValuesGroupBox = new System.Windows.Forms.GroupBox();
-            this.exitMessageTextBox = new System.Windows.Forms.TextBox();
-            this.welcomeMessageLabel = new System.Windows.Forms.Label();
-            this.exitMessageLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.welcomeMessageTextBox = new System.Windows.Forms.TextBox();
-            this.startLocationLabel = new System.Windows.Forms.Label();
-            this.neighborsPanel = new System.Windows.Forms.Panel();
+            this.roomsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.roomsListBox = new System.Windows.Forms.ListBox();
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomDescriptionPanel = new System.Windows.Forms.Panel();
-            this.roomDescriptionLabel = new System.Windows.Forms.Label();
             this.roomDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.roomDescriptionLabel = new System.Windows.Forms.Label();
+            this.roomNamePanel = new System.Windows.Forms.Panel();
             this.roomNameTextBox = new System.Windows.Forms.TextBox();
             this.roomNameLabel = new System.Windows.Forms.Label();
-            this.roomNamePanel = new System.Windows.Forms.Panel();
-            this.roomsListGroupBox = new System.Windows.Forms.GroupBox();
-            this.roomsListBox = new System.Windows.Forms.ListBox();
-            this.addButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.compassPictureBox = new System.Windows.Forms.PictureBox();
+            this.neighborsPanel = new System.Windows.Forms.Panel();
             this.northNeighborAssigner = new Zork.Builder.WinForms.UserControls.NeighborAssigner();
             this.eastNeighborAssigner = new Zork.Builder.WinForms.UserControls.NeighborAssigner();
             this.southNeighborAssigner = new Zork.Builder.WinForms.UserControls.NeighborAssigner();
             this.westNeighborAssigner = new Zork.Builder.WinForms.UserControls.NeighborAssigner();
+            this.compassPictureBox = new System.Windows.Forms.PictureBox();
+            this.itemsTabPage = new System.Windows.Forms.TabPage();
+            this.commandsTabPage = new System.Windows.Forms.TabPage();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.globalValuesGroupBox = new System.Windows.Forms.GroupBox();
+            this.exitMessageTextBox = new System.Windows.Forms.TextBox();
+            this.welcomeMessageLabel = new System.Windows.Forms.Label();
+            this.exitMessageLabel = new System.Windows.Forms.Label();
+            this.startLocationBox = new System.Windows.Forms.ComboBox();
+            this.welcomeMessageTextBox = new System.Windows.Forms.TextBox();
+            this.startLocationLabel = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            dividerStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            dividerStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsTabControl.SuspendLayout();
             this.roomsTabPage.SuspendLayout();
-            this.mainMenuStrip.SuspendLayout();
-            this.globalValuesGroupBox.SuspendLayout();
-            this.neighborsPanel.SuspendLayout();
+            this.roomsListGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
             this.roomDescriptionPanel.SuspendLayout();
             this.roomNamePanel.SuspendLayout();
-            this.roomsListGroupBox.SuspendLayout();
+            this.neighborsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.compassPictureBox)).BeginInit();
+            this.mainMenuStrip.SuspendLayout();
+            this.globalValuesGroupBox.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // newToolStripMenuItem
+            // 
+            newToolStripMenuItem.Name = "newToolStripMenuItem";
+            newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            newToolStripMenuItem.Text = "&New";
+            newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            openToolStripMenuItem.Text = "&Open";
+            openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // dividerStripMenuItem1
+            // 
+            dividerStripMenuItem1.Name = "dividerStripMenuItem1";
+            dividerStripMenuItem1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // saveToolStripMenuItem
+            // 
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            saveToolStripMenuItem.Text = "&Save";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            saveAsToolStripMenuItem.Text = "Save As...";
+            // 
+            // dividerStripMenuItem2
+            // 
+            dividerStripMenuItem2.Name = "dividerStripMenuItem2";
+            dividerStripMenuItem2.Size = new System.Drawing.Size(143, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            exitToolStripMenuItem.Text = "Exit";
             // 
             // roomsTabControl
             // 
@@ -100,6 +158,176 @@ namespace Zork.Builder.WinForms
             this.roomsTabPage.TabIndex = 0;
             this.roomsTabPage.Text = "Rooms";
             this.roomsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // roomsListGroupBox
+            // 
+            this.roomsListGroupBox.Controls.Add(this.deleteButton);
+            this.roomsListGroupBox.Controls.Add(this.addButton);
+            this.roomsListGroupBox.Controls.Add(this.roomsListBox);
+            this.roomsListGroupBox.Location = new System.Drawing.Point(10, 13);
+            this.roomsListGroupBox.Margin = new System.Windows.Forms.Padding(10);
+            this.roomsListGroupBox.Name = "roomsListGroupBox";
+            this.roomsListGroupBox.Size = new System.Drawing.Size(193, 320);
+            this.roomsListGroupBox.TabIndex = 6;
+            this.roomsListGroupBox.TabStop = false;
+            this.roomsListGroupBox.Text = "Rooms List";
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(101, 282);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(10);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 25);
+            this.deleteButton.TabIndex = 5;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(13, 282);
+            this.addButton.Margin = new System.Windows.Forms.Padding(10);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 25);
+            this.addButton.TabIndex = 4;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // roomsListBox
+            // 
+            this.roomsListBox.DataSource = this.roomsBindingSource;
+            this.roomsListBox.DisplayMember = "Name";
+            this.roomsListBox.FormattingEnabled = true;
+            this.roomsListBox.Location = new System.Drawing.Point(6, 19);
+            this.roomsListBox.Name = "roomsListBox";
+            this.roomsListBox.Size = new System.Drawing.Size(175, 251);
+            this.roomsListBox.TabIndex = 3;
+            this.roomsListBox.ValueMember = "Player";
+            // 
+            // roomsBindingSource
+            // 
+            this.roomsBindingSource.DataMember = "Rooms";
+            this.roomsBindingSource.DataSource = this.gameViewModelBindingSource;
+            // 
+            // gameViewModelBindingSource
+            // 
+            this.gameViewModelBindingSource.DataSource = typeof(Zork.Builder.WinForms.GameViewModel);
+            // 
+            // roomDescriptionPanel
+            // 
+            this.roomDescriptionPanel.Controls.Add(this.roomDescriptionTextBox);
+            this.roomDescriptionPanel.Controls.Add(this.roomDescriptionLabel);
+            this.roomDescriptionPanel.Location = new System.Drawing.Point(223, 94);
+            this.roomDescriptionPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.roomDescriptionPanel.Name = "roomDescriptionPanel";
+            this.roomDescriptionPanel.Size = new System.Drawing.Size(340, 239);
+            this.roomDescriptionPanel.TabIndex = 3;
+            // 
+            // roomDescriptionTextBox
+            // 
+            this.roomDescriptionTextBox.Location = new System.Drawing.Point(8, 28);
+            this.roomDescriptionTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.roomDescriptionTextBox.Multiline = true;
+            this.roomDescriptionTextBox.Name = "roomDescriptionTextBox";
+            this.roomDescriptionTextBox.Size = new System.Drawing.Size(320, 206);
+            this.roomDescriptionTextBox.TabIndex = 1;
+            // 
+            // roomDescriptionLabel
+            // 
+            this.roomDescriptionLabel.AutoSize = true;
+            this.roomDescriptionLabel.Location = new System.Drawing.Point(5, 5);
+            this.roomDescriptionLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.roomDescriptionLabel.Name = "roomDescriptionLabel";
+            this.roomDescriptionLabel.Size = new System.Drawing.Size(91, 13);
+            this.roomDescriptionLabel.TabIndex = 0;
+            this.roomDescriptionLabel.Text = "Room Description";
+            // 
+            // roomNamePanel
+            // 
+            this.roomNamePanel.Controls.Add(this.roomNameTextBox);
+            this.roomNamePanel.Controls.Add(this.roomNameLabel);
+            this.roomNamePanel.Location = new System.Drawing.Point(223, 13);
+            this.roomNamePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.roomNamePanel.Name = "roomNamePanel";
+            this.roomNamePanel.Size = new System.Drawing.Size(330, 61);
+            this.roomNamePanel.TabIndex = 5;
+            // 
+            // roomNameTextBox
+            // 
+            this.roomNameTextBox.Location = new System.Drawing.Point(5, 28);
+            this.roomNameTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.roomNameTextBox.Name = "roomNameTextBox";
+            this.roomNameTextBox.Size = new System.Drawing.Size(320, 20);
+            this.roomNameTextBox.TabIndex = 4;
+            // 
+            // roomNameLabel
+            // 
+            this.roomNameLabel.AutoSize = true;
+            this.roomNameLabel.Location = new System.Drawing.Point(5, 5);
+            this.roomNameLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.roomNameLabel.Name = "roomNameLabel";
+            this.roomNameLabel.Size = new System.Drawing.Size(66, 13);
+            this.roomNameLabel.TabIndex = 6;
+            this.roomNameLabel.Text = "Room Name";
+            // 
+            // neighborsPanel
+            // 
+            this.neighborsPanel.Controls.Add(this.northNeighborAssigner);
+            this.neighborsPanel.Controls.Add(this.eastNeighborAssigner);
+            this.neighborsPanel.Controls.Add(this.southNeighborAssigner);
+            this.neighborsPanel.Controls.Add(this.westNeighborAssigner);
+            this.neighborsPanel.Controls.Add(this.compassPictureBox);
+            this.neighborsPanel.Location = new System.Drawing.Point(583, 13);
+            this.neighborsPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.neighborsPanel.Name = "neighborsPanel";
+            this.neighborsPanel.Size = new System.Drawing.Size(500, 320);
+            this.neighborsPanel.TabIndex = 4;
+            // 
+            // northNeighborAssigner
+            // 
+            this.northNeighborAssigner.Location = new System.Drawing.Point(170, 2);
+            this.northNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
+            this.northNeighborAssigner.Name = "northNeighborAssigner";
+            this.northNeighborAssigner.Size = new System.Drawing.Size(165, 75);
+            this.northNeighborAssigner.TabIndex = 6;
+            this.northNeighborAssigner.Load += new System.EventHandler(this.northNeighborAssigner_Load);
+            // 
+            // eastNeighborAssigner
+            // 
+            this.eastNeighborAssigner.Location = new System.Drawing.Point(330, 132);
+            this.eastNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
+            this.eastNeighborAssigner.Name = "eastNeighborAssigner";
+            this.eastNeighborAssigner.Size = new System.Drawing.Size(165, 75);
+            this.eastNeighborAssigner.TabIndex = 5;
+            this.eastNeighborAssigner.Load += new System.EventHandler(this.eastNeighborAssigner_Load);
+            // 
+            // southNeighborAssigner
+            // 
+            this.southNeighborAssigner.Location = new System.Drawing.Point(170, 243);
+            this.southNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
+            this.southNeighborAssigner.Name = "southNeighborAssigner";
+            this.southNeighborAssigner.Size = new System.Drawing.Size(165, 75);
+            this.southNeighborAssigner.TabIndex = 4;
+            this.southNeighborAssigner.Load += new System.EventHandler(this.southNeighborAssigner_Load);
+            // 
+            // westNeighborAssigner
+            // 
+            this.westNeighborAssigner.Location = new System.Drawing.Point(5, 124);
+            this.westNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
+            this.westNeighborAssigner.Name = "westNeighborAssigner";
+            this.westNeighborAssigner.Size = new System.Drawing.Size(165, 75);
+            this.westNeighborAssigner.TabIndex = 1;
+            this.westNeighborAssigner.Load += new System.EventHandler(this.westNeighborAssigner_Load);
+            // 
+            // compassPictureBox
+            // 
+            this.compassPictureBox.Location = new System.Drawing.Point(175, 85);
+            this.compassPictureBox.Name = "compassPictureBox";
+            this.compassPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.compassPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.compassPictureBox.TabIndex = 3;
+            this.compassPictureBox.TabStop = false;
             // 
             // itemsTabPage
             // 
@@ -133,66 +361,23 @@ namespace Zork.Builder.WinForms
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.dividerStripMenuItem1,
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
-            this.dividerStripMenuItem2,
-            this.exitToolStripMenuItem});
+            newToolStripMenuItem,
+            openToolStripMenuItem,
+            dividerStripMenuItem1,
+            saveToolStripMenuItem,
+            saveAsToolStripMenuItem,
+            dividerStripMenuItem2,
+            exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openToolStripMenuItem.Text = "&Open";
-            // 
-            // dividerStripMenuItem1
-            // 
-            this.dividerStripMenuItem1.Name = "dividerStripMenuItem1";
-            this.dividerStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As...";
-            // 
-            // dividerStripMenuItem2
-            // 
-            this.dividerStripMenuItem2.Name = "dividerStripMenuItem2";
-            this.dividerStripMenuItem2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // globalValuesGroupBox
             // 
             this.globalValuesGroupBox.Controls.Add(this.exitMessageTextBox);
             this.globalValuesGroupBox.Controls.Add(this.welcomeMessageLabel);
             this.globalValuesGroupBox.Controls.Add(this.exitMessageLabel);
-            this.globalValuesGroupBox.Controls.Add(this.comboBox1);
+            this.globalValuesGroupBox.Controls.Add(this.startLocationBox);
             this.globalValuesGroupBox.Controls.Add(this.welcomeMessageTextBox);
             this.globalValuesGroupBox.Controls.Add(this.startLocationLabel);
             this.globalValuesGroupBox.Location = new System.Drawing.Point(12, 27);
@@ -227,13 +412,14 @@ namespace Zork.Builder.WinForms
             this.exitMessageLabel.TabIndex = 1;
             this.exitMessageLabel.Text = "Exit Message:";
             // 
-            // comboBox1
+            // startLocationBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(115, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
+            this.startLocationBox.FormattingEnabled = true;
+            this.startLocationBox.Location = new System.Drawing.Point(115, 22);
+            this.startLocationBox.Name = "startLocationBox";
+            this.startLocationBox.Size = new System.Drawing.Size(121, 21);
+            this.startLocationBox.TabIndex = 3;
+            this.startLocationBox.SelectedIndexChanged += new System.EventHandler(this.startLocationBox_SelectedIndexChanged);
             // 
             // welcomeMessageTextBox
             // 
@@ -251,158 +437,9 @@ namespace Zork.Builder.WinForms
             this.startLocationLabel.TabIndex = 0;
             this.startLocationLabel.Text = "Start Location:";
             // 
-            // neighborsPanel
+            // openFileDialog
             // 
-            this.neighborsPanel.Controls.Add(this.northNeighborAssigner);
-            this.neighborsPanel.Controls.Add(this.eastNeighborAssigner);
-            this.neighborsPanel.Controls.Add(this.southNeighborAssigner);
-            this.neighborsPanel.Controls.Add(this.westNeighborAssigner);
-            this.neighborsPanel.Controls.Add(this.compassPictureBox);
-            this.neighborsPanel.Location = new System.Drawing.Point(583, 13);
-            this.neighborsPanel.Margin = new System.Windows.Forms.Padding(10);
-            this.neighborsPanel.Name = "neighborsPanel";
-            this.neighborsPanel.Size = new System.Drawing.Size(500, 320);
-            this.neighborsPanel.TabIndex = 4;
-            // 
-            // roomDescriptionPanel
-            // 
-            this.roomDescriptionPanel.Controls.Add(this.roomDescriptionTextBox);
-            this.roomDescriptionPanel.Controls.Add(this.roomDescriptionLabel);
-            this.roomDescriptionPanel.Location = new System.Drawing.Point(223, 94);
-            this.roomDescriptionPanel.Margin = new System.Windows.Forms.Padding(10);
-            this.roomDescriptionPanel.Name = "roomDescriptionPanel";
-            this.roomDescriptionPanel.Size = new System.Drawing.Size(340, 239);
-            this.roomDescriptionPanel.TabIndex = 3;
-            // 
-            // roomDescriptionLabel
-            // 
-            this.roomDescriptionLabel.AutoSize = true;
-            this.roomDescriptionLabel.Location = new System.Drawing.Point(5, 5);
-            this.roomDescriptionLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.roomDescriptionLabel.Name = "roomDescriptionLabel";
-            this.roomDescriptionLabel.Size = new System.Drawing.Size(91, 13);
-            this.roomDescriptionLabel.TabIndex = 0;
-            this.roomDescriptionLabel.Text = "Room Description";
-            // 
-            // roomDescriptionTextBox
-            // 
-            this.roomDescriptionTextBox.Location = new System.Drawing.Point(8, 28);
-            this.roomDescriptionTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.roomDescriptionTextBox.Multiline = true;
-            this.roomDescriptionTextBox.Name = "roomDescriptionTextBox";
-            this.roomDescriptionTextBox.Size = new System.Drawing.Size(320, 206);
-            this.roomDescriptionTextBox.TabIndex = 1;
-            // 
-            // roomNameTextBox
-            // 
-            this.roomNameTextBox.Location = new System.Drawing.Point(5, 28);
-            this.roomNameTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.roomNameTextBox.Name = "roomNameTextBox";
-            this.roomNameTextBox.Size = new System.Drawing.Size(320, 20);
-            this.roomNameTextBox.TabIndex = 4;
-            // 
-            // roomNameLabel
-            // 
-            this.roomNameLabel.AutoSize = true;
-            this.roomNameLabel.Location = new System.Drawing.Point(5, 5);
-            this.roomNameLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.roomNameLabel.Name = "roomNameLabel";
-            this.roomNameLabel.Size = new System.Drawing.Size(66, 13);
-            this.roomNameLabel.TabIndex = 6;
-            this.roomNameLabel.Text = "Room Name";
-            // 
-            // roomNamePanel
-            // 
-            this.roomNamePanel.Controls.Add(this.roomNameTextBox);
-            this.roomNamePanel.Controls.Add(this.roomNameLabel);
-            this.roomNamePanel.Location = new System.Drawing.Point(223, 13);
-            this.roomNamePanel.Margin = new System.Windows.Forms.Padding(10);
-            this.roomNamePanel.Name = "roomNamePanel";
-            this.roomNamePanel.Size = new System.Drawing.Size(330, 61);
-            this.roomNamePanel.TabIndex = 5;
-            // 
-            // roomsListGroupBox
-            // 
-            this.roomsListGroupBox.Controls.Add(this.deleteButton);
-            this.roomsListGroupBox.Controls.Add(this.addButton);
-            this.roomsListGroupBox.Controls.Add(this.roomsListBox);
-            this.roomsListGroupBox.Location = new System.Drawing.Point(10, 13);
-            this.roomsListGroupBox.Margin = new System.Windows.Forms.Padding(10);
-            this.roomsListGroupBox.Name = "roomsListGroupBox";
-            this.roomsListGroupBox.Size = new System.Drawing.Size(193, 320);
-            this.roomsListGroupBox.TabIndex = 6;
-            this.roomsListGroupBox.TabStop = false;
-            this.roomsListGroupBox.Text = "Rooms List";
-            // 
-            // roomsListBox
-            // 
-            this.roomsListBox.FormattingEnabled = true;
-            this.roomsListBox.Location = new System.Drawing.Point(6, 19);
-            this.roomsListBox.Name = "roomsListBox";
-            this.roomsListBox.Size = new System.Drawing.Size(175, 251);
-            this.roomsListBox.TabIndex = 3;
-            // 
-            // addButton
-            // 
-            this.addButton.Location = new System.Drawing.Point(13, 282);
-            this.addButton.Margin = new System.Windows.Forms.Padding(10);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 25);
-            this.addButton.TabIndex = 4;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Location = new System.Drawing.Point(101, 282);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(10);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(75, 25);
-            this.deleteButton.TabIndex = 5;
-            this.deleteButton.Text = "Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            // 
-            // compassPictureBox
-            // 
-            this.compassPictureBox.Image = global::Zork.Builder.WinForms.Properties.Resources.Compass;
-            this.compassPictureBox.Location = new System.Drawing.Point(175, 85);
-            this.compassPictureBox.Name = "compassPictureBox";
-            this.compassPictureBox.Size = new System.Drawing.Size(150, 150);
-            this.compassPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.compassPictureBox.TabIndex = 3;
-            this.compassPictureBox.TabStop = false;
-            // 
-            // northNeighborAssigner
-            // 
-            this.northNeighborAssigner.Location = new System.Drawing.Point(170, 2);
-            this.northNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
-            this.northNeighborAssigner.Name = "northNeighborAssigner";
-            this.northNeighborAssigner.Size = new System.Drawing.Size(165, 75);
-            this.northNeighborAssigner.TabIndex = 6;
-            // 
-            // eastNeighborAssigner
-            // 
-            this.eastNeighborAssigner.Location = new System.Drawing.Point(330, 132);
-            this.eastNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
-            this.eastNeighborAssigner.Name = "eastNeighborAssigner";
-            this.eastNeighborAssigner.Size = new System.Drawing.Size(165, 75);
-            this.eastNeighborAssigner.TabIndex = 5;
-            // 
-            // southNeighborAssigner
-            // 
-            this.southNeighborAssigner.Location = new System.Drawing.Point(170, 243);
-            this.southNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
-            this.southNeighborAssigner.Name = "southNeighborAssigner";
-            this.southNeighborAssigner.Size = new System.Drawing.Size(165, 75);
-            this.southNeighborAssigner.TabIndex = 4;
-            // 
-            // westNeighborAssigner
-            // 
-            this.westNeighborAssigner.Location = new System.Drawing.Point(5, 124);
-            this.westNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
-            this.westNeighborAssigner.Name = "westNeighborAssigner";
-            this.westNeighborAssigner.Size = new System.Drawing.Size(165, 75);
-            this.westNeighborAssigner.TabIndex = 1;
+            this.openFileDialog.Filter = "JSON Files|*.json";
             // 
             // ZorkBuilderMainMenu
             // 
@@ -422,17 +459,19 @@ namespace Zork.Builder.WinForms
             this.Load += new System.EventHandler(this.ZorkBuilderMainMenu_Load);
             this.roomsTabControl.ResumeLayout(false);
             this.roomsTabPage.ResumeLayout(false);
-            this.mainMenuStrip.ResumeLayout(false);
-            this.mainMenuStrip.PerformLayout();
-            this.globalValuesGroupBox.ResumeLayout(false);
-            this.globalValuesGroupBox.PerformLayout();
-            this.neighborsPanel.ResumeLayout(false);
+            this.roomsListGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
             this.roomDescriptionPanel.ResumeLayout(false);
             this.roomDescriptionPanel.PerformLayout();
             this.roomNamePanel.ResumeLayout(false);
             this.roomNamePanel.PerformLayout();
-            this.roomsListGroupBox.ResumeLayout(false);
+            this.neighborsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.compassPictureBox)).EndInit();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
+            this.globalValuesGroupBox.ResumeLayout(false);
+            this.globalValuesGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,18 +486,11 @@ namespace Zork.Builder.WinForms
         private System.Windows.Forms.GroupBox globalValuesGroupBox;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.TabPage commandsTabPage;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator dividerStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator dividerStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label exitMessageLabel;
         private System.Windows.Forms.Label startLocationLabel;
         private System.Windows.Forms.TextBox exitMessageTextBox;
         private System.Windows.Forms.Label welcomeMessageLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox startLocationBox;
         private System.Windows.Forms.TextBox welcomeMessageTextBox;
         private System.Windows.Forms.PictureBox compassPictureBox;
         private System.Windows.Forms.Panel neighborsPanel;
@@ -476,6 +508,9 @@ namespace Zork.Builder.WinForms
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.ListBox roomsListBox;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.BindingSource roomsBindingSource;
+        private System.Windows.Forms.BindingSource gameViewModelBindingSource;
     }
 }
 

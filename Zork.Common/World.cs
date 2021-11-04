@@ -19,6 +19,7 @@ namespace Zork
         {
             mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
 
+
             foreach (Room room in Rooms) 
             {
                 room.UpdateNeighbors(this);
