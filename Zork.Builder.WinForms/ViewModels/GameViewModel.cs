@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Zork.Builder.WinForms
 {
-    class GameViewModel
+    class GameViewModel : INotifyPropertyChanged
     {
         public BindingList<Room> Rooms { get; set; }
 
@@ -26,10 +26,14 @@ namespace Zork.Builder.WinForms
                     {
                         Rooms = new BindingList<Room>();
                     }
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Game)));
                 }
             }
         }
 
         private Game _game;
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

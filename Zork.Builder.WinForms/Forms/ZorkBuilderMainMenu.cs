@@ -14,7 +14,19 @@ namespace Zork.Builder.WinForms
 {
     public partial class ZorkBuilderMainMenu : Form
     {
-        internal GameViewModel ViewModel { get; private set; }
+        private GameViewModel _viewModel;
+        internal GameViewModel ViewModel 
+        {
+            get => _viewModel;
+            set
+            {
+                if (_viewModel != value)
+                {
+                    _viewModel = value;
+                    gameViewModelBindingSource.DataSource = _viewModel;
+                }
+            }
+        }
 
         public ZorkBuilderMainMenu()
         {
