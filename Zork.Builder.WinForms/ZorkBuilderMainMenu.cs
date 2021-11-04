@@ -95,30 +95,6 @@ namespace Zork.Builder.WinForms
         {
             MessageBox.Show("Not yet implemented");
         }
-        private void westNeighborAssigner_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Not yet implemented");
-        }
-
-        private void northNeighborAssigner_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Not yet implemented");
-        }
-
-        private void eastNeighborAssigner_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Not yet implemented");
-        }
-
-        private void southNeighborAssigner_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Not yet implemented");
-        }
-
-        private void roomsBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
