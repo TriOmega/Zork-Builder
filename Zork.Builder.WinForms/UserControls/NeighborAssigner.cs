@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Zork;
 
-namespace Zork.Builder.WinForms
+namespace Zork.Builder.WinForms.UserControls
 {
-    public partial class Form1 : Form
+    public partial class NeighborAssigner : UserControl
     {
-        public Form1()
+        public NeighborAssigner()
         {
             InitializeComponent();
         }

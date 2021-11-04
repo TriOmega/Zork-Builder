@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="UserControls\NeighborAssigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\NeighborAssigner.Designer.cs">
+      <DependentUpon>NeighborAssigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZorkBuilderMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ZorkBuilderMainMenu.Designer.cs">
+      <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +68,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\NeighborAssigner.resx">
+      <DependentUpon>NeighborAssigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZorkBuilderMainMenu.resx">
+      <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,6 +94,9 @@
       <Project>{4c476db7-97d5-46c4-92bd-b949b9a1690d}</Project>
       <Name>Zork.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Compass.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
