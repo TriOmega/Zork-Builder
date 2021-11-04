@@ -7,7 +7,7 @@ namespace Zork
 {
     public class World
     {
-        public HashSet<Room> Rooms { get; set; }
+        public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
         public Dictionary<string, Room> RoomsByName => mRoomsByName;
@@ -18,6 +18,7 @@ namespace Zork
         private void OnDeserialized(StreamingContext context)
         {
             mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
+
 
             foreach (Room room in Rooms) 
             {
