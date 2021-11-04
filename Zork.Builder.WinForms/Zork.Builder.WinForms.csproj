@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,14 +55,15 @@
     <Compile Include="UserControls\NeighborAssigner.Designer.cs">
       <DependentUpon>NeighborAssigner.cs</DependentUpon>
     </Compile>
-    <Compile Include="ZorkBuilderMainMenu.cs">
+    <Compile Include="Forms\ZorkBuilderMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ZorkBuilderMainMenu.Designer.cs">
+    <Compile Include="Forms\ZorkBuilderMainMenu.Designer.cs">
       <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,9 +77,10 @@
     <EmbeddedResource Include="UserControls\NeighborAssigner.resx">
       <DependentUpon>NeighborAssigner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ZorkBuilderMainMenu.resx">
+    <EmbeddedResource Include="Forms\ZorkBuilderMainMenu.resx">
       <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
