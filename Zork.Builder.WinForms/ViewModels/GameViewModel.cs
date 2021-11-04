@@ -28,14 +28,14 @@ namespace Zork.Builder.WinForms
                         World = new World();
                         StartingLocation = null;
                         Player = new Player(World, StartingLocation);
-                        Rooms = new BindingList<Room>((IList<Room>)_game.World.Rooms.ToList<Room>());
+                        Rooms = new BindingList<Room>(_game.World.Rooms);
                     }
                     else
                     {
                         World = new World();
                         StartingLocation = null;
                         Player = new Player(World, StartingLocation);
-                        Rooms = new BindingList<Room>((IList<Room>)Array.Empty<Room>());
+                        Rooms = new BindingList<Room>();
                     }
                 }
                 

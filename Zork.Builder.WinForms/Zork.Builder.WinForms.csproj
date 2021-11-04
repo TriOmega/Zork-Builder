@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRoomForm.designer.cs">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NeighborAssigner.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddRoomForm.resx">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

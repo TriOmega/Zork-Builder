@@ -130,6 +130,7 @@ namespace Zork.Builder.WinForms
                     ViewModel.Game = JsonConvert.DeserializeObject<Game>(jsonFileData);
                     //ViewModel.World = JsonConvert.DeserializeObject<World>(jsonFileData);
                     //ViewModel.Player = JsonConvert.DeserializeObject<Player>(jsonFileData);
+                    this.Text = (openFileDialog.FileName == null ? "Zork Builder - Main Menu" : $"Zork Builder - {openFileDialog.SafeFileName}");
                     IsWorldLoaded = true;
                 }
                 catch (Exception ex)
