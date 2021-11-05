@@ -224,6 +224,7 @@ namespace Zork.Builder.WinForms
             // roomDescriptionTextBox
             // 
             roomDescriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Description", true));
+            roomDescriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.roomsBindingSource, "Description", true));
             roomDescriptionTextBox.Location = new System.Drawing.Point(8, 28);
             roomDescriptionTextBox.Margin = new System.Windows.Forms.Padding(5);
             roomDescriptionTextBox.Multiline = true;
@@ -253,7 +254,7 @@ namespace Zork.Builder.WinForms
             // 
             // roomNameTextBox
             // 
-            roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
+            roomNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             roomNameTextBox.Location = new System.Drawing.Point(5, 28);
             roomNameTextBox.Margin = new System.Windows.Forms.Padding(5);
             roomNameTextBox.Name = "roomNameTextBox";
@@ -504,12 +505,12 @@ namespace Zork.Builder.WinForms
         private UserControls.NeighborAssigner eastNeighborAssigner;
         private UserControls.NeighborAssigner southNeighborAssigner;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.BindingSource roomsBindingSource;
-        private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         private System.Windows.Forms.ComboBox startLocationBox;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.ListBox roomsListBox;
+        public System.Windows.Forms.BindingSource roomsBindingSource;
+        public System.Windows.Forms.BindingSource gameViewModelBindingSource;
     }
 }
 

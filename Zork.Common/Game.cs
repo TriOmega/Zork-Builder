@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Zork
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
         public World World { get; private set; }
 
@@ -20,6 +20,8 @@ namespace Zork
             World = world;
             Player = player;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void Run()
         {

@@ -95,6 +95,9 @@
     <EmbeddedResource Include="Forms\ZorkBuilderMainMenu.resx">
       <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\GameViewModel.datasource" />
     <None Include="Properties\Settings.settings">

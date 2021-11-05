@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 
 namespace Zork
 {
-    public class Room : IEquatable<Room>
+    public class Room : INotifyPropertyChanged
     {
         [JsonProperty(Order = 1)]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [JsonProperty(Order = 2)]
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
@@ -35,6 +36,8 @@ namespace Zork
         }
 
         public static bool operator !=(Room lhs, Room rhs) => !(lhs == rhs);
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override bool Equals(object obj) => obj is Room room ? this == room : false;
 
