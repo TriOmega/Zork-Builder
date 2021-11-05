@@ -8,6 +8,8 @@ namespace Zork
 {
     public class Room : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [JsonProperty(Order = 1)]
         public string Name { get; set; }
 
@@ -37,7 +39,6 @@ namespace Zork
 
         public static bool operator !=(Room lhs, Room rhs) => !(lhs == rhs);
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public override bool Equals(object obj) => obj is Room room ? this == room : false;
 

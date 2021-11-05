@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zork;
 using Newtonsoft.Json.Linq;
+using Zork.Builder.WinForms.UserControls;
 
 namespace Zork.Builder.WinForms
 {
@@ -65,10 +66,18 @@ namespace Zork.Builder.WinForms
 
             _worldDependentMenuItems = new MenuItem[]
             {
-                
+
             };
 
             IsWorldLoaded = false;
+
+            _NeighborAssignerControlMap = new Dictionary<Directions, NeighborAssigner>
+            {
+                { Directions.North, northNeighborAssigner },
+                { Directions.South, southNeighborAssigner },
+                { Directions.East, eastNeighborAssigner },
+                { Directions.West, westNeighborAssigner }
+            };
         }
 
         private void ZorkBuilderMainMenu_Load(object sender, EventArgs e)
@@ -183,9 +192,20 @@ namespace Zork.Builder.WinForms
             MessageBox.Show("Not yet implemented");
         }
 
+        private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deleteButton.Enabled = roomsListBox.SelectedItem != null;
+            Room selectedRoom = roomsListBox.SelectedItem as Room;
+            foreach (var entry in _NeighborAssignerControlMap)
+            {
+                entry.Value.Room = selectedRoom;
+            }
+        }
 
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
         private MenuItem[] _worldDependentMenuItems;
+        private readonly Dictionary<Directions, NeighborAssigner> _NeighborAssignerControlMap;
+
     }
 }
