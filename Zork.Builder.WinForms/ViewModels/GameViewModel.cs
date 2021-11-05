@@ -10,6 +10,8 @@ namespace Zork.Builder.WinForms
     internal class GameViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Filename { get; set; }
         public bool GameIsLoaded { get; set; }
         public World World { get; set; }
         public Player Player { get; set; }
@@ -18,6 +20,7 @@ namespace Zork.Builder.WinForms
 
         public Game Game
         {
+            get => _game;
             set
             {
                 if (_game != value)

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zork;
+using Newtonsoft.Json.Linq;
 
 namespace Zork.Builder.WinForms
 {
@@ -77,10 +78,82 @@ namespace Zork.Builder.WinForms
 
         }
 
+        #region File Menu
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //JObject defaultGameFile = new JObject(
+                //    new JProperty("Halo", 9),
+                //    new JProperty("Starcraft", 4),
+                //    new JProperty("CoD", 8));
+
+                GameViewModel defaultGameFile = new GameViewModel();
+
+                string stringJson = JsonConvert.SerializeObject(defaultGameFile);
+                File.WriteAllText(saveFileDialog.FileName, stringJson);
+            }
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string jsonFileData = File.ReadAllText(openFileDialog.FileName);
+                    ViewModel.Game = JsonConvert.DeserializeObject<Game>(jsonFileData);
+                    //ViewModel.World = JsonConvert.DeserializeObject<World>(jsonFileData);
+                    //ViewModel.Player = JsonConvert.DeserializeObject<Player>(jsonFileData);
+                    ViewModel.Filename = openFileDialog.FileName;
+                    this.Text = (ViewModel.Filename == null ? "Zork Builder - Main Menu" : $"Zork Builder - {openFileDialog.SafeFileName}");
+                    IsWorldLoaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Zork Builder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => SaveWorld();
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ViewModel.Filename = saveFileDialog.FileName;
+                SaveWorld();
+            }
+        }
+
+        private void SaveWorld()
+        {
+            if (string.IsNullOrEmpty(ViewModel.Filename))
+            {
+                throw new InvalidProgramException("Filename expected!");
+            }
+
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+
+            using (StreamWriter streamWriter = new StreamWriter(ViewModel.Filename))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                serializer.Serialize(jsonWriter, ViewModel.Game);
+            }
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    string stringJson = JsonConvert.SerializeObject(ViewModel.Game);
+            //    File.WriteAllText(saveFileDialog.FileName, stringJson);
+            //}
+        }
+
+        #endregion
+
         private void addButton_Click(object sender, EventArgs e)
         {
             using (AddNewRoomForm addRoomForm = new AddNewRoomForm())
@@ -113,28 +186,10 @@ namespace Zork.Builder.WinForms
             MessageBox.Show("Not yet implemented");
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string jsonFileData = File.ReadAllText(openFileDialog.FileName);
-                    ViewModel.Game = JsonConvert.DeserializeObject<Game>(jsonFileData);
-                    //ViewModel.World = JsonConvert.DeserializeObject<World>(jsonFileData);
-                    //ViewModel.Player = JsonConvert.DeserializeObject<Player>(jsonFileData);
-                    this.Text = (openFileDialog.FileName == null ? "Zork Builder - Main Menu" : $"Zork Builder - {openFileDialog.SafeFileName}");
-                    IsWorldLoaded = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Zork Builder", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
 
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
         private MenuItem[] _worldDependentMenuItems;
+
     }
 }

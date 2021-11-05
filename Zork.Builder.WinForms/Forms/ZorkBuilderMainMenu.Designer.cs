@@ -69,6 +69,7 @@ namespace Zork.Builder.WinForms
             this.westNeighborAssigner = new Zork.Builder.WinForms.UserControls.NeighborAssigner();
             this.startLocationBox = new System.Windows.Forms.ComboBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dividerStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -115,7 +116,7 @@ namespace Zork.Builder.WinForms
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             newToolStripMenuItem.Text = "&New";
             newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -123,37 +124,39 @@ namespace Zork.Builder.WinForms
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             openToolStripMenuItem.Text = "&Open";
             openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // dividerStripMenuItem1
             // 
             dividerStripMenuItem1.Name = "dividerStripMenuItem1";
-            dividerStripMenuItem1.Size = new System.Drawing.Size(143, 6);
+            dividerStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             saveToolStripMenuItem.Text = "&Save";
+            saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             saveAsToolStripMenuItem.Text = "Save As...";
+            saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // dividerStripMenuItem2
             // 
             dividerStripMenuItem2.Name = "dividerStripMenuItem2";
-            dividerStripMenuItem2.Size = new System.Drawing.Size(143, 6);
+            dividerStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // roomsListGroupBox
@@ -462,6 +465,10 @@ namespace Zork.Builder.WinForms
             // 
             this.openFileDialog.Filter = "JSON Files|*.json";
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Zork Game Files (*.json)|*.json";
+            // 
             // ZorkBuilderMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,6 +516,7 @@ namespace Zork.Builder.WinForms
         private System.Windows.Forms.ComboBox startLocationBox;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 
