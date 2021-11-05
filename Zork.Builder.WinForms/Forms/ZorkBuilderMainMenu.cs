@@ -56,13 +56,11 @@ namespace Zork.Builder.WinForms
 
             _worldDependentControls = new Control[]
             {
-                addButton,
-                deleteButton,
-                startLocationBox,
-                westNeighborAssigner,
-                eastNeighborAssigner,
-                northNeighborAssigner,
-                southNeighborAssigner
+                globalValuesGroupBox,
+                roomsListGroupBox,
+                roomNamePanel,
+                roomDescriptionPanel,
+                neighborsPanel
             };
 
             _worldDependentMenuItems = new MenuItem[]
