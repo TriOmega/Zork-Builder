@@ -55,10 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddRoomForm.cs">
+    <Compile Include="Forms\AddRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddRoomForm.designer.cs">
+    <Compile Include="Forms\AddRoomForm.designer.cs">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\NeighborAssigner.cs">
@@ -68,15 +68,15 @@
       <DependentUpon>NeighborAssigner.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\GameViewModel.cs" />
-    <Compile Include="ZorkBuilderMainMenu.cs">
+    <Compile Include="Forms\ZorkBuilderMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ZorkBuilderMainMenu.Designer.cs">
+    <Compile Include="Forms\ZorkBuilderMainMenu.Designer.cs">
       <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddRoomForm.resx">
+    <EmbeddedResource Include="Forms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -92,7 +92,7 @@
     <EmbeddedResource Include="UserControls\NeighborAssigner.resx">
       <DependentUpon>NeighborAssigner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ZorkBuilderMainMenu.resx">
+    <EmbeddedResource Include="Forms\ZorkBuilderMainMenu.resx">
       <DependentUpon>ZorkBuilderMainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

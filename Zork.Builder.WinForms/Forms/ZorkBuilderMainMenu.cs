@@ -83,7 +83,24 @@ namespace Zork.Builder.WinForms
         }
         private void addButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            using (AddNewRoomForm addRoomForm = new AddNewRoomForm())
+            {
+                if (addRoomForm.ShowDialog() == DialogResult.OK)
+                {
+                    Room existingRoom = ViewModel.Rooms.
+                        FirstOrDefault(room => room.Name.Equals(addRoomForm.RoomName, StringComparison.OrdinalIgnoreCase));
+                    if (existingRoom != null)
+                    {
+                        MessageBox.Show("A room with this name already exists.","ZorkBuilder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        Room room = new Room(addRoomForm.RoomName);
+                        ViewModel.Rooms.Add(room);
+                    }
+                }
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)

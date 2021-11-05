@@ -1,7 +1,7 @@
 ﻿
-namespace Zork.Builder.WinForms.Forms
+namespace Zork.Builder.WinForms
 {
-    partial class addNewRoomForm
+    partial class AddNewRoomForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,20 +31,11 @@ namespace Zork.Builder.WinForms.Forms
         {
             System.Windows.Forms.Label newRoomNameLabel;
             System.Windows.Forms.Button cancelNewRoomButton;
-            System.Windows.Forms.Button addNewRoomButton;
+            this.addNewRoomButton = new System.Windows.Forms.Button();
             this.newRoomTextBox = new System.Windows.Forms.TextBox();
             newRoomNameLabel = new System.Windows.Forms.Label();
             cancelNewRoomButton = new System.Windows.Forms.Button();
-            addNewRoomButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // newRoomTextBox
-            // 
-            this.newRoomTextBox.Location = new System.Drawing.Point(9, 27);
-            this.newRoomTextBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.newRoomTextBox.Name = "newRoomTextBox";
-            this.newRoomTextBox.Size = new System.Drawing.Size(262, 20);
-            this.newRoomTextBox.TabIndex = 1;
             // 
             // newRoomNameLabel
             // 
@@ -65,29 +56,41 @@ namespace Zork.Builder.WinForms.Forms
             cancelNewRoomButton.TabIndex = 7;
             cancelNewRoomButton.Text = "Cancel";
             cancelNewRoomButton.UseVisualStyleBackColor = true;
+            cancelNewRoomButton.Click += new System.EventHandler(this.cancelNewRoomButton_Click);
             // 
             // addNewRoomButton
             // 
-            addNewRoomButton.Location = new System.Drawing.Point(108, 60);
-            addNewRoomButton.Name = "addNewRoomButton";
-            addNewRoomButton.Size = new System.Drawing.Size(75, 25);
-            addNewRoomButton.TabIndex = 6;
-            addNewRoomButton.Text = "Ok";
-            addNewRoomButton.UseVisualStyleBackColor = true;
+            this.addNewRoomButton.Enabled = false;
+            this.addNewRoomButton.Location = new System.Drawing.Point(108, 60);
+            this.addNewRoomButton.Name = "addNewRoomButton";
+            this.addNewRoomButton.Size = new System.Drawing.Size(75, 25);
+            this.addNewRoomButton.TabIndex = 6;
+            this.addNewRoomButton.Text = "Ok";
+            this.addNewRoomButton.UseVisualStyleBackColor = true;
+            this.addNewRoomButton.Click += new System.EventHandler(this.addNewRoomButton_Click);
             // 
-            // addNewRoomForm
+            // newRoomTextBox
             // 
-            this.AcceptButton = addNewRoomButton;
+            this.newRoomTextBox.Location = new System.Drawing.Point(8, 27);
+            this.newRoomTextBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.newRoomTextBox.Name = "newRoomTextBox";
+            this.newRoomTextBox.Size = new System.Drawing.Size(262, 20);
+            this.newRoomTextBox.TabIndex = 1;
+            this.newRoomTextBox.TextChanged += new System.EventHandler(this.newRoomTextBox_TextChanged);
+            // 
+            // AddNewRoomForm
+            // 
+            this.AcceptButton = this.addNewRoomButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = cancelNewRoomButton;
             this.ClientSize = new System.Drawing.Size(283, 94);
             this.Controls.Add(cancelNewRoomButton);
-            this.Controls.Add(addNewRoomButton);
+            this.Controls.Add(this.addNewRoomButton);
             this.Controls.Add(newRoomNameLabel);
             this.Controls.Add(this.newRoomTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "addNewRoomForm";
+            this.Name = "AddNewRoomForm";
             this.Text = "Add New Room";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -97,5 +100,6 @@ namespace Zork.Builder.WinForms.Forms
         #endregion
 
         private System.Windows.Forms.TextBox newRoomTextBox;
+        private System.Windows.Forms.Button addNewRoomButton;
     }
 }
