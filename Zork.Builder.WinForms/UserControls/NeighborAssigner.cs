@@ -12,9 +12,55 @@ namespace Zork.Builder.WinForms.UserControls
 {
     public partial class NeighborAssigner : UserControl
     {
+        public Room Room
+        {
+            get => _room;
+            set
+            {
+                if (_room != value)
+                {
+                    _room = value;
+                    if (_room != null)
+                    {
+                        var potentialNeighbors = new List<Room>();
+                        potentialNeighbors.Insert(0, NoNeighbor);
+                        neighborComboBox.DataSource = potentialNeighbors;
+                    }
+                    else
+                    {
+                        currentNeighbor = NoNeighbor;
+                    }
+                }
+            }
+        }
+        public Directions Direction 
+        {
+            get => _direction;
+            set
+            {
+                _direction = value;
+                directionTextBox.Text = _direction.ToString();
+            }
+        }
         public NeighborAssigner()
         {
             InitializeComponent();
         }
+
+        public Room currentNeighbor 
+        {
+            get => (Room)neighborComboBox.SelectedItem;
+            set => neighborComboBox.SelectedItem = value;
+        }
+
+        private void neighborComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private static readonly Room NoNeighbor = new Room() { Name = "None" };
+
+        private Directions _direction;
+        private Room _room;
     }
 }

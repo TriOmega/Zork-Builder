@@ -212,6 +212,5 @@ namespace Zork.Builder.WinForms
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
         private MenuItem[] _worldDependentMenuItems;
-
     }
 }

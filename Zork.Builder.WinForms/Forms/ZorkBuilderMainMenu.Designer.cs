@@ -287,6 +287,7 @@ namespace Zork.Builder.WinForms
             // 
             // northNeighborAssigner
             // 
+            this.northNeighborAssigner.Direction = Zork.Directions.North;
             this.northNeighborAssigner.Location = new System.Drawing.Point(170, 2);
             this.northNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
             this.northNeighborAssigner.Name = "northNeighborAssigner";
@@ -295,6 +296,7 @@ namespace Zork.Builder.WinForms
             // 
             // eastNeighborAssigner
             // 
+            this.eastNeighborAssigner.Direction = Zork.Directions.East;
             this.eastNeighborAssigner.Location = new System.Drawing.Point(330, 132);
             this.eastNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
             this.eastNeighborAssigner.Name = "eastNeighborAssigner";
@@ -303,6 +305,7 @@ namespace Zork.Builder.WinForms
             // 
             // southNeighborAssigner
             // 
+            this.southNeighborAssigner.Direction = Zork.Directions.South;
             this.southNeighborAssigner.Location = new System.Drawing.Point(170, 243);
             this.southNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
             this.southNeighborAssigner.Name = "southNeighborAssigner";
@@ -311,6 +314,7 @@ namespace Zork.Builder.WinForms
             // 
             // westNeighborAssigner
             // 
+            this.westNeighborAssigner.Direction = Zork.Directions.West;
             this.westNeighborAssigner.Location = new System.Drawing.Point(5, 124);
             this.westNeighborAssigner.Margin = new System.Windows.Forms.Padding(5);
             this.westNeighborAssigner.Name = "westNeighborAssigner";
