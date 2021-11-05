@@ -84,15 +84,9 @@ namespace Zork.Builder.WinForms
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //JObject defaultGameFile = new JObject(
-                //    new JProperty("Halo", 9),
-                //    new JProperty("Starcraft", 4),
-                //    new JProperty("CoD", 8));
-
-                GameViewModel defaultGameFile = new GameViewModel();
-
-                string stringJson = JsonConvert.SerializeObject(defaultGameFile);
-                File.WriteAllText(saveFileDialog.FileName, stringJson);
+                Game defaultGameFile = new Game(new World {Rooms = new List<Room>()}, null);
+                SaveWorld(saveFileDialog.FileName, defaultGameFile);
+                UpdateMainMenuWithFileName(saveFileDialog.FileName);
             }
         }
 
@@ -107,7 +101,7 @@ namespace Zork.Builder.WinForms
                     //ViewModel.World = JsonConvert.DeserializeObject<World>(jsonFileData);
                     //ViewModel.Player = JsonConvert.DeserializeObject<Player>(jsonFileData);
                     ViewModel.Filename = openFileDialog.FileName;
-                    this.Text = (ViewModel.Filename == null ? "Zork Builder - Main Menu" : $"Zork Builder - {openFileDialog.SafeFileName}");
+                    UpdateMainMenuWithFileName(ViewModel.Filename);
                     IsWorldLoaded = true;
                 }
                 catch (Exception ex)
@@ -117,20 +111,21 @@ namespace Zork.Builder.WinForms
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => SaveWorld();
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => SaveWorld(ViewModel.Filename, ViewModel.Game);
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ViewModel.Filename = saveFileDialog.FileName;
-                SaveWorld();
+                SaveWorld(ViewModel.Filename, ViewModel.Game);
+                UpdateMainMenuWithFileName(ViewModel.Filename);
             }
         }
 
-        private void SaveWorld()
+        private void SaveWorld(string filepath, Game game)
         {
-            if (string.IsNullOrEmpty(ViewModel.Filename))
+            if (string.IsNullOrEmpty(filepath))
             {
                 throw new InvalidProgramException("Filename expected!");
             }
@@ -140,16 +135,16 @@ namespace Zork.Builder.WinForms
                 Formatting = Formatting.Indented
             };
 
-            using (StreamWriter streamWriter = new StreamWriter(ViewModel.Filename))
+            using (StreamWriter streamWriter = new StreamWriter(filepath))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
-                serializer.Serialize(jsonWriter, ViewModel.Game);
+                serializer.Serialize(jsonWriter, game);
             }
-            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    string stringJson = JsonConvert.SerializeObject(ViewModel.Game);
-            //    File.WriteAllText(saveFileDialog.FileName, stringJson);
-            //}
+        }
+
+        private void UpdateMainMenuWithFileName(string filepath)
+        {
+            this.Text = (filepath == null ? "Zork Builder - Main Menu" : $"Zork Builder - {Path.GetFileName(filepath)}");
         }
 
         #endregion
@@ -178,7 +173,11 @@ namespace Zork.Builder.WinForms
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            if (MessageBox.Show("Are you sure you wish to delete this room?", "ZorkBuilder", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ViewModel.Rooms.Remove((Room)roomsListBox.SelectedItem);
+                roomsListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
+            }
         }
 
         private void startLocationBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,6 +189,5 @@ namespace Zork.Builder.WinForms
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
         private MenuItem[] _worldDependentMenuItems;
-
     }
 }
