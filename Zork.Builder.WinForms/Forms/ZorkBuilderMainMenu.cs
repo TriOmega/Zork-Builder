@@ -178,7 +178,11 @@ namespace Zork.Builder.WinForms
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            if (MessageBox.Show("Are you sure you wish to delete this room?", "ZorkBuilder", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ViewModel.Rooms.Remove((Room)roomsListBox.SelectedItem);
+                roomsListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
+            }
         }
 
         private void startLocationBox_SelectedIndexChanged(object sender, EventArgs e)
