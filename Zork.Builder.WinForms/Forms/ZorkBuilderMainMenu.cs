@@ -129,6 +129,10 @@ namespace Zork.Builder.WinForms
                 UpdateMainMenuWithFileName(ViewModel.Filename);
             }
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void SaveWorld(string filepath, Game game)
         {
