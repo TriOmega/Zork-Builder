@@ -89,10 +89,28 @@ namespace Zork.Builder.WinForms
                 //    new JProperty("Starcraft", 4),
                 //    new JProperty("CoD", 8));
 
-                GameViewModel defaultGameFile = new GameViewModel();
+                //GameViewModel defaultGameFile = new GameViewModel();
 
-                string stringJson = JsonConvert.SerializeObject(defaultGameFile);
-                File.WriteAllText(saveFileDialog.FileName, stringJson);
+                Game defaultGameFile = new Game(new World {Rooms = new List<Room>()}, null);
+
+                if (string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    throw new InvalidProgramException("Filename expected!");
+                }
+
+                JsonSerializer serializer = new JsonSerializer
+                {
+                    Formatting = Formatting.Indented
+                };
+
+                using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName))
+                using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+                {
+                    serializer.Serialize(jsonWriter, defaultGameFile);
+                }
+
+                //string stringJson = JsonConvert.SerializeObject(defaultGameFile);
+                //File.WriteAllText(saveFileDialog.FileName, stringJson);
             }
         }
 
