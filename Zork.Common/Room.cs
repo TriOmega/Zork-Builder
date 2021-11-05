@@ -16,6 +16,9 @@ namespace Zork
         [JsonProperty(Order = 2)]
         public string Description { get; set; }
 
+        [JsonIgnore]
+        public List<Neighbor> PotentialNeighbors { get; set; }
+
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
@@ -47,6 +50,14 @@ namespace Zork
         public override string ToString() => Name;
 
         public override int GetHashCode() => Name.GetHashCode();
+
+        public void CreatePotentialNeighborsFromNames(World world)
+        {
+            PotentialNeighbors = (from entry in NeighborNames
+                                  let neighbor = world.RoomsByName.GetValueOrDefault(entry.Value)
+                                  where neighbor != null
+                                  select (Neighbor: neighbor));
+        }
 
         public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
                                                                  let room = world.RoomsByName.GetValueOrDefault(entry.Value)

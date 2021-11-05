@@ -10,6 +10,8 @@ namespace Zork
     {
         public List<Room> Rooms { get; set; }
 
+        //public List<Neighbor> Neighbors { get; set; }
+
         [JsonIgnore]
         public Dictionary<string, Room> RoomsByName => mRoomsByName;
 
@@ -23,6 +25,7 @@ namespace Zork
 
             foreach (Room room in Rooms) 
             {
+                room.CreatePotentialNeighborsFromNames(this);
                 room.UpdateNeighbors(this);
             }
         }

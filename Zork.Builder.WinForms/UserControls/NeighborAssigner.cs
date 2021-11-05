@@ -22,7 +22,7 @@ namespace Zork.Builder.WinForms.UserControls
                     _room = value;
                     if (_room != null)
                     {
-                        var potentialNeighbors = new List<Room>();
+                        var potentialNeighbors = new List<Neighbor>(_room.PotentialNeighbors);
                         potentialNeighbors.Insert(0, NoNeighbor);
                         neighborComboBox.DataSource = potentialNeighbors;
                     }
@@ -47,9 +47,9 @@ namespace Zork.Builder.WinForms.UserControls
             InitializeComponent();
         }
 
-        public Room currentNeighbor 
+        public Neighbor currentNeighbor 
         {
-            get => (Room)neighborComboBox.SelectedItem;
+            get => (Neighbor)neighborComboBox.SelectedItem;
             set => neighborComboBox.SelectedItem = value;
         }
 
@@ -58,7 +58,7 @@ namespace Zork.Builder.WinForms.UserControls
 
         }
 
-        private static readonly Room NoNeighbor = new Room() { Name = "None" };
+        private static readonly Neighbor NoNeighbor = new Neighbor() { Name = "None" };
 
         private Directions _direction;
         private Room _room;
