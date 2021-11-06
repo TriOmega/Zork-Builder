@@ -34,6 +34,7 @@ namespace Zork.Builder.WinForms
                     {
                         InitDirectionBox(nAssigner);
                     }
+                    RebuildPotentialStarts();
                 }
                 
             }
@@ -138,6 +139,10 @@ namespace Zork.Builder.WinForms
                 UpdateMainMenuWithFileName(ViewModel.Filename);
             }
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void SaveWorld(string filepath, Game game)
         {
@@ -211,6 +216,7 @@ namespace Zork.Builder.WinForms
             {
                 entry.Value.Room = selectedRoom;
             }
+            RebuildPotentialStarts();
         }
 
         private void startLocationBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -229,15 +235,21 @@ namespace Zork.Builder.WinForms
             assigner.Room = ViewModel.Rooms[0];
         }
 
+        private void RebuildPotentialStarts()
+        {
+            var potentialStarts = new List<Room>();
+            foreach (Room start in ViewModel.Rooms)
+            {
+                potentialStarts.Add(start);
+            }
+            startLocationBox.DataSource = potentialStarts;
+        }
+
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
         private Control[] _neighborAssigners;
         private MenuItem[] _worldDependentMenuItems;
         private readonly Dictionary<Directions, NeighborAssigner> _neighborControlMap;
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
     }
 }

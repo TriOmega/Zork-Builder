@@ -468,6 +468,7 @@ namespace Zork.Builder.WinForms
             // 
             // startLocationBox
             // 
+            this.startLocationBox.DisplayMember = "Name";
             this.startLocationBox.FormattingEnabled = true;
             this.startLocationBox.Location = new System.Drawing.Point(115, 22);
             this.startLocationBox.Name = "startLocationBox";
