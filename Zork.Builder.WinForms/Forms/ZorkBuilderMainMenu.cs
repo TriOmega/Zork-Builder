@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Zork.Builder.WinForms.UserControls;
-using System.ComponentModel;
 
 namespace Zork.Builder.WinForms
 {
@@ -94,6 +93,11 @@ namespace Zork.Builder.WinForms
                 northNeighborAssigner,
                 southNeighborAssigner
             };
+        }
+
+        private void ZorkBuilderMainMenu_Load(object sender, EventArgs e)
+        {
+
         }
 
         #region File Menu

@@ -26,6 +26,7 @@ namespace Zork.Builder.WinForms.UserControls
                                 potentialNeighbors.Add(neighbor);
                             }
                         }
+                        //var potentialNeighbors = new List<Room>(Rooms); 
                         potentialNeighbors.Insert(0, NoNeighbor);
                         
                         neighborComboBox.SelectedIndexChanged -= NeighborComboBox_SelectedIndexChanged;
