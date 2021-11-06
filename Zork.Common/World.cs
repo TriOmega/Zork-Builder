@@ -20,15 +20,14 @@ namespace Zork
         {
             mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
 
-
-            foreach (Room room in Rooms) 
+            foreach (Room room in Rooms)
             {
                 room.UpdateNeighbors(this);
             }
         }
 
         [JsonProperty]
-        private string StartingLocation { get; set; }
+        public string StartingLocation { get; set; }
 
         private Dictionary<string, Room> mRoomsByName;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
@@ -18,7 +17,7 @@ namespace Zork
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
         [JsonIgnore]
-        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
+        public Dictionary<Directions, Room> Neighbors { get; set; }
 
         public static bool operator ==(Room lhs, Room rhs)
         {
@@ -52,6 +51,11 @@ namespace Zork
                                                                  where room != null
                                                                  select (Direction: entry.Key, Room: room))
                                                                  .ToDictionary(pair => pair.Direction, pair => pair.Room);
+        public void UpdateNeighborNames() => NeighborNames = (from entry in Neighbors
+                                                              let room = entry.Value
+                                                              where room != null
+                                                              select (Direction: entry.Key, String: room.Name))
+                                                              .ToDictionary(pair => pair.Direction, pair => pair.String);
 
         public Room(string name = null)
         {

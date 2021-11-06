@@ -35,7 +35,6 @@ namespace Zork.Builder.WinForms.UserControls
             // 
             // directionTextBox
             // 
-            this.directionTextBox.Enabled = false;
             this.directionTextBox.Location = new System.Drawing.Point(20, 10);
             this.directionTextBox.Margin = new System.Windows.Forms.Padding(20, 5, 20, 5);
             this.directionTextBox.Name = "directionTextBox";
@@ -52,7 +51,7 @@ namespace Zork.Builder.WinForms.UserControls
             this.neighborComboBox.Name = "neighborComboBox";
             this.neighborComboBox.Size = new System.Drawing.Size(155, 21);
             this.neighborComboBox.TabIndex = 1;
-            this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.neighborComboBox_SelectedIndexChanged);
+            this.neighborComboBox.SelectedIndexChanged += new System.EventHandler(this.NeighborComboBox_SelectedIndexChanged);
             // 
             // NeighborAssigner
             // 
