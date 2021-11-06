@@ -240,5 +240,9 @@ namespace Zork.Builder.WinForms
         private MenuItem[] _worldDependentMenuItems;
         private readonly Dictionary<Directions, NeighborAssigner> _neighborControlMap;
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
