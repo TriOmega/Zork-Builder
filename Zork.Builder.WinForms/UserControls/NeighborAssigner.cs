@@ -12,6 +12,7 @@ namespace Zork.Builder.WinForms.UserControls
 {
     public partial class NeighborAssigner : UserControl
     {
+        
         public Room Room
         {
             get => _room;
@@ -23,17 +24,38 @@ namespace Zork.Builder.WinForms.UserControls
                     if (_room != null)
                     {
                         var potentialNeighbors = new List<Room>();
+                        foreach (Room neighbor in Rooms)
+                        {
+                            if (!neighbor.Equals(value))
+                            {
+                                potentialNeighbors.Add(neighbor);
+                            }
+                        }
+                        //var potentialNeighbors = new List<Room>(Rooms); 
                         potentialNeighbors.Insert(0, NoNeighbor);
+                        
+                        neighborComboBox.SelectedIndexChanged -= NeighborComboBox_SelectedIndexChanged;
                         neighborComboBox.DataSource = potentialNeighbors;
+
+                        if (_room.Neighbors != null && _room.Neighbors.TryGetValue(Direction, out Room neighborRoom))
+                        {
+                            CurrentNeighbor = neighborRoom;
+                        }
+                        else
+                        {
+                            CurrentNeighbor = NoNeighbor;
+                        }
+
+                        neighborComboBox.SelectedIndexChanged += NeighborComboBox_SelectedIndexChanged;
                     }
                     else
                     {
-                        currentNeighbor = NoNeighbor;
+                        neighborComboBox.DataSource = null;
                     }
                 }
             }
         }
-        public Directions Direction 
+        public Directions Direction
         {
             get => _direction;
             set
@@ -42,25 +64,43 @@ namespace Zork.Builder.WinForms.UserControls
                 directionTextBox.Text = _direction.ToString();
             }
         }
+        public Room CurrentNeighbor
+        {
+            get => (Room)neighborComboBox.SelectedItem;
+            set => neighborComboBox.SelectedItem = value;
+        }
         public NeighborAssigner()
         {
             InitializeComponent();
         }
 
-        public Room currentNeighbor 
+        public NeighborAssigner(Directions direction, Room room)
         {
-            get => (Room)neighborComboBox.SelectedItem;
-            set => neighborComboBox.SelectedItem = value;
+            Direction = direction;
+            Room = room ?? throw new ArgumentNullException(nameof(room));
         }
 
-        private void neighborComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void NeighborComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_room != null)
+            {
+                Room selectedRoom = (Room)neighborComboBox.SelectedItem;
+                if (selectedRoom == NoNeighbor)
+                {
+                    _room.Neighbors.Remove(Direction);
+                }
+                else
+                {
+                    _room.Neighbors[Direction] = selectedRoom;
+                }
+            }
         }
 
         private static readonly Room NoNeighbor = new Room() { Name = "None" };
 
-        private Directions _direction;
         private Room _room;
+        private Directions _direction;
+        public BindingList<Room> Rooms { get; set; }
     }
 }

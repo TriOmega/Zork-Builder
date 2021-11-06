@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zork;
 using Newtonsoft.Json.Linq;
+using Zork.Builder.WinForms.UserControls;
 
 namespace Zork.Builder.WinForms
 {
@@ -33,6 +34,15 @@ namespace Zork.Builder.WinForms
                 {
                     item.Enabled = _viewModel.GameIsLoaded;
                 }
+
+                if (_viewModel.GameIsLoaded)
+                {
+                    foreach (NeighborAssigner nAssigner in _neighborAssigners)
+                    {
+                        InitDirectionBox(nAssigner);
+                    }
+                }
+                
             }
         }
 
@@ -60,6 +70,9 @@ namespace Zork.Builder.WinForms
                 deleteButton,
                 startLocationBox,
                 westNeighborAssigner,
+                welcomeMessageTextBox,
+                roomNameTextBox,
+                roomDescriptionTextBox,
                 eastNeighborAssigner,
                 northNeighborAssigner,
                 southNeighborAssigner
@@ -71,6 +84,22 @@ namespace Zork.Builder.WinForms
             };
 
             IsWorldLoaded = false;
+
+            _neighborControlMap = new Dictionary<Directions, NeighborAssigner>
+            {
+                { Directions.North, northNeighborAssigner },
+                { Directions.South, southNeighborAssigner },
+                { Directions.East, eastNeighborAssigner },
+                { Directions.West, westNeighborAssigner }
+            };
+
+            _neighborAssigners = new Control[]
+            {
+                westNeighborAssigner,
+                eastNeighborAssigner,
+                northNeighborAssigner,
+                southNeighborAssigner
+            };
         }
 
         private void ZorkBuilderMainMenu_Load(object sender, EventArgs e)
@@ -80,17 +109,18 @@ namespace Zork.Builder.WinForms
 
         #region File Menu
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Game defaultGameFile = new Game(new World {Rooms = new List<Room>()}, null);
                 SaveWorld(saveFileDialog.FileName, defaultGameFile);
                 UpdateMainMenuWithFileName(saveFileDialog.FileName);
+                IsWorldLoaded = true;
             }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -98,8 +128,6 @@ namespace Zork.Builder.WinForms
                 {
                     string jsonFileData = File.ReadAllText(openFileDialog.FileName);
                     ViewModel.Game = JsonConvert.DeserializeObject<Game>(jsonFileData);
-                    //ViewModel.World = JsonConvert.DeserializeObject<World>(jsonFileData);
-                    //ViewModel.Player = JsonConvert.DeserializeObject<Player>(jsonFileData);
                     ViewModel.Filename = openFileDialog.FileName;
                     UpdateMainMenuWithFileName(ViewModel.Filename);
                     IsWorldLoaded = true;
@@ -111,9 +139,9 @@ namespace Zork.Builder.WinForms
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => SaveWorld(ViewModel.Filename, ViewModel.Game);
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e) => SaveWorld(ViewModel.Filename, ViewModel.Game);
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -135,6 +163,11 @@ namespace Zork.Builder.WinForms
                 Formatting = Formatting.Indented
             };
 
+            foreach(Room room in _viewModel.Rooms)
+            {
+                room.UpdateNeighborNames();
+            }
+
             using (StreamWriter streamWriter = new StreamWriter(filepath))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
@@ -149,7 +182,7 @@ namespace Zork.Builder.WinForms
 
         #endregion
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             using (AddNewRoomForm addRoomForm = new AddNewRoomForm())
             {
@@ -165,13 +198,14 @@ namespace Zork.Builder.WinForms
                     else
                     {
                         Room room = new Room(addRoomForm.RoomName);
+                        room.Neighbors = new Dictionary<Directions, Room>();
                         ViewModel.Rooms.Add(room);
                     }
                 }
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you wish to delete this room?", "ZorkBuilder", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -179,15 +213,39 @@ namespace Zork.Builder.WinForms
                 roomsListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
             }
         }
+        private void RoomsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deleteButton.Enabled = roomsListBox.SelectedItem != null;
+            startLocationBox.Enabled = roomsListBox.SelectedItem != null;
+            Room selectedRoom = roomsListBox.SelectedItem as Room;
+
+            foreach (KeyValuePair < Directions, NeighborAssigner > entry in _neighborControlMap)
+            {
+                entry.Value.Room = selectedRoom;
+            }
+        }
 
         private void startLocationBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            if (startLocationBox.SelectedItem != null)
+            {
+                Room selectedRoom = startLocationBox.SelectedItem as Room;
+                ViewModel.StartingLocation = selectedRoom.Name;
+                ViewModel.World.StartingLocation = selectedRoom.Name;
+            }
         }
 
+        private void InitDirectionBox(NeighborAssigner assigner)
+        {
+            assigner.Rooms = ViewModel.Rooms;
+            assigner.Room = ViewModel.Rooms[0];
+        }
 
         private GameViewModel _viewModel;
         private Control[] _worldDependentControls;
+        private Control[] _neighborAssigners;
         private MenuItem[] _worldDependentMenuItems;
+        private readonly Dictionary<Directions, NeighborAssigner> _neighborControlMap;
+
     }
 }
